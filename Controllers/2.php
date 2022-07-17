@@ -21,11 +21,12 @@ if (empty($data->word)) {
 }
 
 $db = new Database();
-$result = $db->Query("select title,text from articles where text like ?", ["%" . $data->word . "%"]);
+
+$result = $db->Query("select title,word,count(word) as count_word from words where word like ? group by title, word order by count_word desc", [$data->word]);
 foreach ($result as $item) {
     $msg["status"][] = "ok";
-    $msg["title"][] = $item["title"] ;
-    $msg["count"][] =   substr_count($item["text"],$data->word);
+    $msg["title"][] = $item["title"];
+    $msg["count"][] = $item["count_word"];
 }
 
 echo json_encode($msg);

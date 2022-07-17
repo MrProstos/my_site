@@ -78,7 +78,7 @@ function Get_Content_2() {
                         break
                     case "ok":
                         document.querySelector(".result_article_word").insertAdjacentHTML("beforeend",
-                            `<span>Статья ${msg["title"][i]}  кол-во совпадений  ${msg["count"][i]}</span><br>`);
+                            `<span>Статья <a onclick="OnClickTitle(${msg["title"]})" id="${msg["title"]}" href="#">${msg["title"][i]}</a>  кол-во совпадений  ${msg["count"][i]}</span><br>`);
                 }
 
             }

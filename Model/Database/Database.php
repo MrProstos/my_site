@@ -38,6 +38,7 @@ class Database
             $exec->execute($data);
             return null;
         } catch (PDOException $e) {
+            echo $e->getMessage();
             return $e->getCode();
         }
     }
