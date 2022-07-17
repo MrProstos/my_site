@@ -21,18 +21,30 @@ function Get_Content_1() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let msg = JSON.parse(this.response)
             for (let i = 0; i < msg["status"].length; i++) {
+
                 let status = msg["status"][i]
+                let title = msg["title"][i]
+                let url = msg["url"][i]
+                let count = msg["count"][i]
+
                 switch (status) {
                     case "Введите ключевое слово":
                         alert("Введите ключевое слово");
                         break;
                     case "23505":
                         document.querySelector(".status").insertAdjacentHTML("beforeend",
-                           ` ${msg["title"][i]}`);
+                            `<span>Статья ${title} уже импортирована</span><br>`);
                         break;
-                    default :
-                        document.querySelector(".status").insertAdjacentHTML("beforeend", msg["title"][i]);
-                        document.querySelector(".result_article").insertAdjacentHTML("afterbegin", msg["body"][i]);
+                    case "ok" :
+                        document.querySelector(".status").insertAdjacentHTML("beforeend",
+                            `<span>Статья<a href=${url}>${title}</a> импортирована, кол-во слов ${count}</span><br>`);
+                        document.querySelector(".result_article").insertAdjacentHTML("afterbegin",
+                            `
+                        <tr>
+                            <td>${title}</td>
+                            <td>${url}</td>
+                            <td>${count}</td>
+                        </tr>`);
                 }
             }
         }
@@ -44,7 +56,6 @@ function Get_Content_2() {
     document.querySelector(".result_article_word").innerHTML = "";  //Обновляю тело статуса
 
     let word = document.querySelector("#word");
-    let result = document.querySelector(".result_article_word");
 
     let xhr = new XMLHttpRequest();
 

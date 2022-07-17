@@ -9,7 +9,8 @@ $data = json_decode(file_get_contents("php://input"));
 $msg = [
     "status"=>[],
     "title"=>[],
-    "body"=>[]
+    "url"=>[],
+    "count"=>[]
 ];
 
 
@@ -34,20 +35,14 @@ for ($i = 0; $i < count($response[1]); $i++) {
 
     if ($rows == 23505) {
         $msg["status"][]  = "23505";
-        $msg["title"][] = "<span>Cтатья <a href=$url>$_title</a> уже импортирована.</span><br>";
+        $msg["title"][] = $_title;
         continue;
     }
 
-    $msg["status"][] = "<p>Импорт завершен!</p>";
-
-    $msg["title"][] = "<span> Найдена статья <a href=$url>$_title</a> Кол-во слов $count</span><br>";
-
-    $msg["body"][]= "
-    <tr>
-        <td>$_title</td>
-        <td>$url</td>
-        <td>$count</td>
-    </tr>";
+    $msg["status"][] = "ok";
+    $msg["title"][] = $_title;
+    $msg["url"][] = $url;
+    $msg["count"][] = $count;
 }
 
 echo json_encode($msg);
