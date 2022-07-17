@@ -1,6 +1,7 @@
+"use strict";
 //Обработка клика на название статьи и отправка данных на сервер
 function OnClickTitle() {
-    $(".title").on("click", function(){
+    $(".title").on("click", function () {
         let id = $(this).attr("id");
         let result = document.querySelector(".get-body");
 
@@ -20,4 +21,20 @@ function OnClickTitle() {
             }
         };
     });
+}
+
+function OnLoad() {
+    let result = document.querySelector(".result_article");
+
+    let req = new XMLHttpRequest();
+    let url = "http://localhost:63342/Controllers/print_table.php";
+
+    req.open("GET", url, true);
+    req.send(null);
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4 && req.status === 200) {
+            result.insertAdjacentHTML("beforeend",this.responseText);
+        }
+    };
 }

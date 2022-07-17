@@ -24,4 +24,37 @@ class Database
     {
         return $this->DBH;
     }
+
+    /**
+     * @param string $sql_str 1-аргумент SQL запрос в виде строки
+     * @param array $data 2-аргумент данные (переменные для вставки в SQL запрос)
+     * @return int|null
+     */
+
+    public function Exec(string $sql_str, array $data): ?int
+    {
+        try {
+            $exec = $this->getDBH()->prepare($sql_str);
+            $exec->execute($data);
+            return null;
+        } catch (PDOException $e) {
+            return $e->getCode();
+        }
+    }
+
+    public function Query(string $sql_str, array $data = null): array
+    {
+        try {
+            $arr = array();
+            $query = $this->getDBH()->prepare($sql_str);
+            $query->execute($data);
+            while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
+                $arr[] = $row;
+            }
+            return $arr;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            return array();
+        }
+    }
 }

@@ -67,13 +67,14 @@
 
         /*Стили для таблиц*/
 
-        .table_result {
+        .result_article {
             margin-top: 4px;
             border-collapse: collapse;
             /*убираем пустые промежутки между ячейками*/
             border: 1px solid black;
             /*устанавливаем для таблицы внешнюю границу серого цвета толщиной 1px*/
             width: 80%;
+
         }
 
         th {
@@ -89,31 +90,37 @@
 </head>
 <body>
 <div class="tabs">
+
     <input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
     <label for="tab-btn-1">Вкладка 1</label>
     <input type="radio" name="tab-btn" id="tab-btn-2" value="">
     <label for="tab-btn-2">Вкладка 2</label>
 
     <div id="content-1">
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                OnLoad();
+            });
+        </script>
+
+        <label for="title"></label>
         <input type="text" id="title" placeholder="Введите ключевое слово">
-        <button onclick="sendJSON_Content_1()">Скопировать</button>
+        <button onclick="Get_Content_1()">Скопировать</button>
+
         <hr>
-        <table class="table_result">
-            <thead>
-            <tr>
-                <th>Название статьи</th>
-                <th>URL</th>
-                <th>Кол-во слов</th>
-            </tr>
-            </thead>
-            <tbody class="result_content_1">
-            </tbody>
+
+
+        <table class="result_article">
+
+<!--            Место для ответа OnLoad()-->
         </table>
     </div>
 
     <div id="content-2">
+        <label for="word"></label>
         <input type="text" id="word" placeholder="Поиск слова">
-        <button onclick="sendJSON_Content_2()">Найти</button>
+        <button onclick="Get_Content_2()">Найти</button>
         <hr>
         <div class="result_content_2"></div>
         <hr>

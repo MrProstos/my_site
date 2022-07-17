@@ -1,7 +1,7 @@
 <?php
 
 include $_SERVER["DOCUMENT_ROOT"] . "/Model/Wikipedia/Wikipedia.php";
-include $_SERVER["DOCUMENT_ROOT"] . "/Model/Database/Tables.php";
+include $_SERVER["DOCUMENT_ROOT"] . "/Model/Database/Database.php";
 
 header("Content-Type: application/json");
 $data = json_decode(file_get_contents("php://input"));
@@ -12,9 +12,14 @@ if (empty($data->title)) {
 }
 
 $api = new Wikipedia;
-$db = new Test;
+$db = new Database();
 
 $response = $api->Search($data->title);
+
+$msg = [
+    "status"=>"",
+    "body"=>[]
+];
 
 for ($i = 0; $i < count($response[1]); $i++) {
 
@@ -23,19 +28,22 @@ for ($i = 0; $i < count($response[1]); $i++) {
     $body = $api->Parse($_title);
     $count = str_word_count($body);
 
-    $rows = $db->Insert("insert into articles (title, wiki_url, count_words) values (?,?,?)",array($_title, $url, $count));
-
-    echo "<tr>";
+    $rows = $db->Exec("insert into articles (title, wiki_url, count_words) values (?,?,?)", array($_title, $url, $count));
 
     if ($rows == 23505) {
-        echo "<td>Данная статья есть в базе данных!</td>";
+        echo 23505;
         continue;
     }
-
-    echo "<td>$_title</td>";
-    echo "<td>$url</td>";
-    echo "<td>$count</td>";
-    echo "</tr>";
+    $msg["body"][]= "<tr>
+        <td>$_title</td>
+        <td>$url</td>
+        <td>$count</td>
+    </tr>";
+    echo "<tr>
+        <td>$_title</td>
+        <td>$url</td>
+        <td>$count</td>
+    </tr>";
 }
 
 

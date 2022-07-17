@@ -3,7 +3,7 @@
 //Класс для поиска статей
 class Wikipedia
 {
-    const endPoint = "https://ru.Wikipedia.org/w/api.php"; //"https://www.mediawiki.org/w/api.php";
+    const endPoint = "https://ru.Wikipedia.org/w/api.php";
 
     /**
      * Отрпавка запроса до Wikipedia, возвращает ассоциативный массив
@@ -37,7 +37,7 @@ class Wikipedia
             "namespace" => "0",
             "profile" => "strict",
             "redirects" => "resolve",
-            "limit" => 5
+            "limit" => 1
         ];
         return $this->Request($params);
     }
