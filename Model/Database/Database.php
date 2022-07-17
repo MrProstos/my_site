@@ -42,7 +42,14 @@ class Database
         }
     }
 
-    public function Query(string $sql_str, array $data = null): array
+    /**
+     * Вернет Массив или false в случае ошибки
+     * @param string $sql_str 1-аргумент SQL запрос в виде строки
+     * @param array|null $data 2-аргумент данные (переменные для вставки в SQL запрос)
+     * @return array|bool
+     */
+
+    public function Query(string $sql_str, array $data = null): array|bool
     {
         try {
             $arr = array();
@@ -54,7 +61,7 @@ class Database
             return $arr;
         } catch (PDOException $e) {
             echo $e->getMessage();
-            return array();
+            return false;
         }
     }
 }
