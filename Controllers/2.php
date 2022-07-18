@@ -15,7 +15,7 @@ $msg = [
     "count" => []
 ];
 
-
+//Проверка на отсутсвие данных
 if (empty($data->word)) {
     $msg["status"] = ["Введите слово для поиска"];
     echo json_encode($msg);

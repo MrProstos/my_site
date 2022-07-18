@@ -116,6 +116,10 @@ function OnClickTitle() {
 
 }
 
+function Clean_body() {
+    document.querySelector(".get-body").innerHTML = ""
+}
+
 function OnLoad() {
     let result = document.querySelector(".result_article");
 

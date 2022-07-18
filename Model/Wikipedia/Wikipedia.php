@@ -24,7 +24,7 @@ class Wikipedia
 
     /**
      * Поиск статей , возвращает ассоциативный массив
-     * @param string $Search_word
+     * @param string $Search_word Принимает строку и ищет похожую статью по названию
      * @return mixed
      */
 

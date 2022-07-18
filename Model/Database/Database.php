@@ -20,6 +20,10 @@ class Database
         }
     }
 
+    /**
+     * @return PDO
+     */
+
     public function getDBH(): PDO
     {
         return $this->DBH;
@@ -60,7 +64,7 @@ class Database
                 $arr[] = $row;
             }
             return $arr;
-        } catch (PDOException $e) {
+        } catch (PDOException) {
             return false;
         }
     }
