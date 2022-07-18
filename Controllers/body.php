@@ -10,13 +10,7 @@ if (empty($data->title)) {
 }
 
 $db = new Database();
-$msg = [
-    "body" => ""
-];
 $result = $db->Query("select body from articles where title = ?", [$data->title]);
-foreach ($result as $item) {
-    $msg["body"] = $item["body"];
-}
 
-echo json_encode($msg);
+echo $result[0]["body"];
 

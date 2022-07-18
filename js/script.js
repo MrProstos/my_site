@@ -1,6 +1,6 @@
 "use strict";
 
-const ServerURL = "http://localhost:63342/"
+const ServerURL = "http://localhost/"
 
 // эта функция сработает при нажатии на кнопку
 function Get_Content_1() {
@@ -70,7 +70,10 @@ function Get_Content_2() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let msg = JSON.parse(this.response)
             for (let i = 0; i < msg["status"].length; i++) {
+
                 let status = msg["status"][i]
+                let title = msg["title"][i];
+                let count = msg["count"][i];
 
                 switch (status) {
                     case "Введите слово для поиска":
@@ -78,10 +81,52 @@ function Get_Content_2() {
                         break
                     case "ok":
                         document.querySelector(".result_article_word").insertAdjacentHTML("beforeend",
-                            `<span>Статья <a onclick="OnClickTitle(${msg["title"]})" id="${msg["title"]}" href="#">${msg["title"][i]}</a>  кол-во совпадений  ${msg["count"][i]}</span><br>`);
+                            `<span>Статья <a id="${title}" onclick="OnClickTitle()" href="#">${title}</a>  кол-во совпадений  ${count}</span><br>`);
                 }
 
             }
+        }
+    };
+}
+
+
+//Обработка клика на название статьи и отправка данных на сервер
+function OnClickTitle() {
+    document.querySelector('.result_article_word').addEventListener('click', function (e) {
+        let id = e.target.id;
+        let result = document.querySelector(".get-body")
+
+        let req = new XMLHttpRequest();
+        const url = ServerURL + "Controllers/body.php";
+
+        req.open("POST", url, true);
+        req.setRequestHeader("Content-Type", "");
+
+        let data = JSON.stringify({"title": id});
+
+        req.send(data);
+
+        req.onreadystatechange = function () {
+            if (req.readyState === 4 && req.status === 200) {
+                result.innerHTML = this.response;
+            }
+        }
+    });
+
+}
+
+function OnLoad() {
+    let result = document.querySelector(".result_article");
+
+    let req = new XMLHttpRequest();
+    const url = ServerURL + "Controllers/print_table.php";
+
+    req.open("GET", url, true);
+    req.send(null);
+
+    req.onreadystatechange = function () {
+        if (req.readyState === 4 && req.status === 200) {
+            result.insertAdjacentHTML("beforeend", this.responseText);
         }
     };
 }
