@@ -37,7 +37,7 @@ class Wikipedia
             "namespace" => "0",
             "profile" => "strict",
             "redirects" => "resolve",
-            "limit" => 5
+            "limit" => 1
         ];
         return $this->Request($params);
     }

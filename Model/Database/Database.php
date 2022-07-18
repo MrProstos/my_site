@@ -26,6 +26,7 @@ class Database
     }
 
     /**
+     * Вернет null или код ошибки
      * @param string $sql_str 1-аргумент SQL запрос в виде строки
      * @param array $data 2-аргумент данные (переменные для вставки в SQL запрос)
      * @return int|null
@@ -38,7 +39,6 @@ class Database
             $exec->execute($data);
             return null;
         } catch (PDOException $e) {
-            echo $e->getMessage();
             return $e->getCode();
         }
     }
@@ -61,7 +61,6 @@ class Database
             }
             return $arr;
         } catch (PDOException $e) {
-            echo $e->getMessage();
             return false;
         }
     }

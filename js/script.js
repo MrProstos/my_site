@@ -2,12 +2,12 @@
 
 const ServerURL = "http://mrprostos.keenetic.link/"
 
-// эта функция сработает при нажатии на кнопку
+// При нажатии кнопки отправляет запрос на сервер
 function Get_Content_1() {
 
     document.querySelector(".status").innerHTML = "";  //Обновляю тело статуса
 
-    let title = document.querySelector("#title");
+    let title = document.querySelector("#title"); // Берем название статьи введеное пользователем
     let xhr = new XMLHttpRequest();
 
     const url = ServerURL + "Controllers/1.php";
@@ -15,12 +15,12 @@ function Get_Content_1() {
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
     let data = JSON.stringify({"title": title.value});
-    xhr.send(data);
+    xhr.send(data); // Отправляем данные в виде JSON
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             let msg = JSON.parse(this.response)
-            for (let i = 0; i < msg["status"].length; i++) {
+            for (let i = 0; i < msg["status"].length; i++) { //Парсим ответ и вставляем в HTML
 
                 let status = msg["status"][i]
                 let title = msg["title"][i]
@@ -36,8 +36,9 @@ function Get_Content_1() {
                             `<span>Статья ${title} уже импортирована</span><br>`);
                         break;
                     case "ok" :
+                        console.log(title)
                         document.querySelector(".status").insertAdjacentHTML("beforeend",
-                            `<span>Статья<a href=${url}>${title}</a> импортирована, кол-во слов ${count}</span><br>`);
+                            `<span>Статья <a href=${url}>${title}</a> импортирована, кол-во слов ${count}</span><br>`);
                         document.querySelector(".result_article").insertAdjacentHTML("afterbegin",
                             `
                         <tr>

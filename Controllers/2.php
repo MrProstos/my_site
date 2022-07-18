@@ -24,11 +24,11 @@ if (empty($data->word)) {
 
 $db = new Database();
 
-$result = $db->Query("select title,count from articles_words where word like ?", [$data->word]);
+$result = $db->Query("select word,title,n from articles_words where word like ?", [$data->word]); //Берем данные из представления которое объеденяет таблицу article и words
 foreach ($result as $item) {
     $msg["status"][] = "ok";
     $msg["title"][] = $item["title"];
-    $msg["count"][] = $item["count"];
+    $msg["count"][] = $item["n"];
 }
 
 echo json_encode($msg);
