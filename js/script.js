@@ -131,7 +131,24 @@ function OnLoad() {
 
     req.onreadystatechange = function () {
         if (req.readyState === 4 && req.status === 200) {
-            result.insertAdjacentHTML("beforeend", this.responseText);
+            let msg = JSON.parse(this.response)
+            for (let i = 0; i < msg["title"].length; i++) {
+
+                let title = msg["title"][i];
+                let url = msg["url"][i];
+                let count = msg["count_words"][i];
+
+                result.insertAdjacentHTML("afterbegin", `
+                <tbody>
+                        <tr>
+                            <td>${title}</td>
+                            <td>${url}</td>
+                            <td>${count}</td>
+                        </tr>
+                    </tbody>`);
+
+            }
+
         }
     };
 }
