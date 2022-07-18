@@ -1,7 +1,7 @@
 <?php
 
 include $_SERVER["DOCUMENT_ROOT"] . "/Model/Database/Database.php";
-
+header("Access-Control-Allow-Origin: *");
 $db = new Database();
 $result = $db->Query("SELECT title,wiki_url,count_words FROM articles");
 echo "

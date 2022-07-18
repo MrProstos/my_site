@@ -6,6 +6,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="js/script.js"></script>
     <style>
+
+        /*Вкладки*/
         .tabs {
             font-size: 0;
             max-width: 75%;
@@ -16,14 +18,12 @@
         }
 
         .tabs > div {
-            /* скрыть контент по умолчанию */
             display: none;
             border: 1px solid #e0e0e0;
             padding: 10px 15px;
             font-size: 16px;
         }
 
-        /* отобразить контент, связанный с вабранной радиокнопкой (input type="radio") */
         #tab-btn-1:checked ~ #content-1,
         #tab-btn-2:checked ~ #content-2 {
             display: block;
@@ -57,10 +57,10 @@
         /*Линия*/
 
         hr {
-            border: none; /* Убираем границу */
-            background-color: black; /* Цвет линии */
-            color: black; /* Цвет линии для IE6-7 */
-            height: 2px; /* Толщина линии */
+            border: none;
+            background-color: black;
+            color: black;
+            height: 2px;
         }
 
 
@@ -69,9 +69,7 @@
         .result_article {
             margin-top: 4px;
             border-collapse: collapse;
-            /*убираем пустые промежутки между ячейками*/
             border: 1px solid black;
-            /*устанавливаем для таблицы внешнюю границу серого цвета толщиной 1px*/
             width: 80%;
 
         }
@@ -96,8 +94,8 @@
     <label for="tab-btn-2">Вкладка 2</label>
 
     <div id="content-1">
-
         <script>
+            // Загрузка таблицы со всеми статьями
             document.addEventListener("DOMContentLoaded", function () {
                 OnLoad();
             });
@@ -109,12 +107,12 @@
 
         <hr>
         <div class="status">
-
+            <!--Место для ответа Get_Content_1()-->
         </div>
         <hr>
 
         <table class="result_article">
-<!--            Место для ответа OnLoad()-->
+            <!--Место для ответа OnLoad() и Get_Content_1()-->
         </table>
     </div>
 
@@ -122,12 +120,20 @@
         <label for="word"></label>
         <input type="text" id="word" placeholder="Поиск слова">
         <button onclick="Get_Content_2()">Найти</button>
+
         <hr>
-        <div class="result_article_word"></div>
+
+        <div class="result_article_word">
+            <!--Место для вывода кол-во совпадений в статье-->
+        </div>
+
         <hr>
-        <div class="get-body"></div>
+
+        <div class="get-body">
+            <!--Место для текста статьи при вызову OnClickTitle()-->
+        </div>
     </div>
 
 </div>
 </body>
-</html>
+/html>

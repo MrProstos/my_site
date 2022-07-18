@@ -1,6 +1,6 @@
 "use strict";
 
-const ServerURL = "http://localhost/"
+const ServerURL = "http://mrprostos.keenetic.link/"
 
 // эта функция сработает при нажатии на кнопку
 function Get_Content_1() {

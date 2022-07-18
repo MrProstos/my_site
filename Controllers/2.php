@@ -4,7 +4,9 @@
 include $_SERVER["DOCUMENT_ROOT"] . "/Model/Wikipedia/Wikipedia.php";
 include $_SERVER["DOCUMENT_ROOT"] . "/Model/Database/Database.php";
 
+header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
+
 $data = json_decode(file_get_contents("php://input"));
 
 $msg = [
@@ -22,11 +24,11 @@ if (empty($data->word)) {
 
 $db = new Database();
 
-$result = $db->Query("select title,word,count(word) as count_word from words where word like ? group by title, word order by count_word desc", [$data->word]);
+$result = $db->Query("select title,count from articles_words where word like ?", [$data->word]);
 foreach ($result as $item) {
     $msg["status"][] = "ok";
     $msg["title"][] = $item["title"];
-    $msg["count"][] = $item["count_word"];
+    $msg["count"][] = $item["count"];
 }
 
 echo json_encode($msg);
