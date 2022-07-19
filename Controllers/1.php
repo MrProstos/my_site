@@ -29,7 +29,7 @@ $response = $api->Search($data->title);
 //Парсим массив с данными из Wikipedia
 for ($i = 0; $i < count($response[1]); $i++) {
     $_title = $response[1][$i];
-    $url = $response[3][$i];
+    $url = rawurldecode($response[3][$i]);
     $body = $api->Parse($_title); // Получить текст статьи
     $newBody = preg_replace('/[^ a-zа-яё\d]/ui', '', $body); // Удалияем спец символы которые остались
     $count = str_word_count($newBody); // Посчитать кол-во слов
@@ -43,7 +43,7 @@ for ($i = 0; $i < count($response[1]); $i++) {
 
     $msg["status"][] = "ok";
     $msg["title"][] = $_title;
-    $msg["url"][] = rawurldecode($url); //Преобразуем URL читабельны вид
+    $msg["url"][] = $url; //Преобразуем URL читабельны вид
     $msg["count"][] = $count;
 
     foreach (explode(" ", $newBody, $limit = PHP_INT_MAX) as $item) { // Разбиваем текст на слова и проходим циклом
