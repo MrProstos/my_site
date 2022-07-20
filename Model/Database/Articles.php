@@ -7,7 +7,7 @@ class Articles extends Database
 {
 
     /**
-     * @param array $data Принимает массив данных для вставки в БД
+     * @param array $data [string,string,int,int,string] Принимает массив данных для вставки в БД
      * @return int|null Вернет null в случае успеха, либо код ошибки SQL
      */
     public function Insert(array $data): ?int
@@ -22,7 +22,7 @@ class Articles extends Database
     }
 
     /**
-     * @param array $data Принимает массив данных для подставки данных для выполнения условия SQL
+     * @param array $data [string] Принимает массив данных для подставки данных для выполнения условия SQL
      * @return array|bool Вернет array в случае успеха, false если такое записи нет
      */
 

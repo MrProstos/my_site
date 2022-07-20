@@ -7,7 +7,7 @@
 class Articles_Words extends Database
 {
     /**
-     * @param array $data Принимает массив данных для вставки в БД
+     * @param array $data [int,int,int] Принимает массив данных для вставки в БД
      * @return int|null Вернет null в случае успеха, либо код ошибки SQL
      */
 
@@ -29,7 +29,12 @@ class Articles_Words extends Database
 
     public function Select(array $data): bool|array
     {
-        return $this->Query("select * from articles_words where id_word = ? and id_article = ?",$data);
+        return $this->Query("select distinct a.title, w.word, cnt
+                                    from articles_words
+                                        inner join articles a on articles_words.id_article = a.id
+                                        inner join words w on articles_words.id_word = w.id
+                                    where w.word like ?
+                                    order by cnt desc", $data);
     }
 
 

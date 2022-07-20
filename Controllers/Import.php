@@ -55,12 +55,12 @@ for ($i = 0; $i < count($response[1]); $i++) {
 
     $msg["status"][] = "ok";
     $msg["title"][] = $_title;
-    $msg["url"][] = $wiki_url; //Преобразуем URL читабельны вид
+    $msg["url"][] = $wiki_url;
+    $msg["size"][] = $size;
     $msg["count"][] = $cnt_words;
-
 }
 
-print_r($msg);
+echo json_encode($msg);
 
 
 

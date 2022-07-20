@@ -22,17 +22,17 @@ function Get_Content_1() {
             let msg = JSON.parse(this.response)
             for (let i = 0; i < msg["status"].length; i++) { //Парсим ответ и вставляем в HTML
 
-                let status = msg["status"][i]
-                let title = msg["title"][i]
-                let url = msg["url"][i]
-                let size = msg["size"][i]
-                let count = msg["count"][i]
+                let status = msg["status"][i];
+                let title = msg["title"][i];
+                let url = msg["url"][i];
+                let size = Math.trunc(msg["size"][i] / 1000);
+                let count = msg["count"][i];
 
                 switch (status) {
                     case "Введите ключевое слово":
                         alert("Введите ключевое слово");
                         break;
-                    case "23505":
+                    case 23000:
                         document.querySelector(".status").insertAdjacentHTML("beforeend",
                             `<span>Статья ${title} уже импортирована</span><br>`);
                         break;
@@ -45,7 +45,7 @@ function Get_Content_1() {
                         <tr>
                             <td>${title}</td>
                             <td>${url}</td>
-                            <td>${size}</td>
+                            <td>${size}Kb</td>
                             <td>${count}</td>
                         </tr>`);
                 }
@@ -96,6 +96,7 @@ function Get_Content_2() {
 //Обработка клика на название статьи и отправка данных на сервер
 function OnClickTitle() {
     document.querySelector('.result_article_word').addEventListener('click', function (e) {
+
         let id = e.target.id;
         let result = document.querySelector(".get-body")
 
@@ -123,7 +124,7 @@ function Clean_body() {
 }
 
 function OnLoad() {
-    let result = document.querySelector(".result_article");
+    let result = document.querySelector(".table");
 
     let req = new XMLHttpRequest();
     const url = ServerURL + "Controllers/print_table.php";
@@ -142,7 +143,7 @@ function OnLoad() {
                 let count = msg["count_words"][i];
 
                 result.insertAdjacentHTML("afterbegin", `
-                <tbody>
+                <tbody class="table-group-divider">
                         <tr>
                             <td>${title}</td>
                             <td>${url}</td>

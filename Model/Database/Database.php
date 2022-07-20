@@ -44,7 +44,7 @@ class Database
             $exec->execute($data);
             return null;
         } catch (PDOException $e) {
-            echo $e->getMessage(); //TODO Потом удалить
+//            echo $e->getMessage(); // TODO потом удалить
             return $e->getCode();
         }
     }
