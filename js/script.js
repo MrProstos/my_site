@@ -62,7 +62,7 @@ function Get_Content_2() {
 
     let xhr = new XMLHttpRequest();
 
-    const url = ServerURL + "Controllers/Show.php";
+    const url = ServerURL + "Controllers/Search.php";
 
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
