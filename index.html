@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="js/script.js"></script>
 
     <title>Задание</title>
@@ -68,29 +69,19 @@
 
         /*Стили для таблиц*/
 
-        .result_article {
-            margin-top: 4px;
-            border-collapse: collapse;
-            border: 1px solid black;
-            width: 80%;
-
-        }
-
-        th {
-            border: 1px solid black;
-        }
-
-        td {
-            border: 1px solid black;
-        }
-
 
     </style>
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
 <div class="tabs">
 
@@ -107,10 +98,9 @@
             });
         </script>
 
-
         <label for="title"></label>
         <input type="text" id="title" placeholder="Введите ключевое слово">
-        <button onclick="Get_Content_1()">Скопировать</button>
+        <button onclick="Get_Content_1()" class="btn btn-dark">Скопировать</button>
 
         <hr>
         <div class="status">
@@ -133,13 +123,12 @@
     <div id="content-2">
         <label for="word"></label>
         <input type="text" id="word" placeholder="Поиск слова">
-        <button onclick="Get_Content_2()">Найти</button>
-        <button onclick="Clean_body()">Очистить</button>
+        <button onclick="Get_Content_2()" class="btn btn-dark">Найти</button>
+        <button onclick="Clean_body()" class="btn btn-dark">Очистить</button>
 
         <hr>
 
         <div class="result_article_word">
-
         </div>
 
         <hr>

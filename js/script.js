@@ -40,7 +40,7 @@ function Get_Content_1() {
                         console.log(title)
                         document.querySelector(".status").insertAdjacentHTML("beforeend",
                             `<span>Статья <a href=${url}>${title}</a> импортирована, кол-во слов ${count}</span><br>`);
-                        document.querySelector(".result_article").insertAdjacentHTML("afterbegin",
+                        document.querySelector(".table").insertAdjacentHTML("afterbegin",
                             `
                         <tr>
                             <td>${title}</td>

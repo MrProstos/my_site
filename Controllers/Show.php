@@ -33,7 +33,6 @@ $article_words = new Articles_Words();
 
 $result_word = $words->Select([$data->word]); //Берем данные из представления которое объеденяет таблицу article и words
 if (!$result_word) {
-
     $msg["status"][] = "Такого слова нету";
     echo json_encode($msg);
     exit();
