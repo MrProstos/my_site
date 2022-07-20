@@ -1,19 +1,20 @@
 <?php
 
-
+/**
+ * Класс подключение к БД
+ */
 class Database
 {
-    private string $host = "localhost";
-    private string $port = "5432";
-    private string $dbname = "postgres";
-    private string $user = "postgres";
-    private string $password = "Zz123456";
+    private string $host = "127.0.0.1";
+    private string $dbname = "db";
+    private string $user = "vlad";
+    private string $password = "bktl57m";
     private PDO $DBH;
 
     function __construct()
     {
         try {
-            $dsn = "pgsql:host=$this->host;port=$this->port;dbname=$this->dbname;";
+            $dsn = "mysql:host={$this->host};dbname=$this->dbname";
             $this->DBH = new PDO($dsn, $this->user, $this->password);
         } catch (PDOException $e) {
             die($e->getMessage());
@@ -24,7 +25,7 @@ class Database
      * @return PDO
      */
 
-    public function getDBH(): PDO
+    protected function getDBH(): PDO
     {
         return $this->DBH;
     }
@@ -36,13 +37,14 @@ class Database
      * @return int|null
      */
 
-    public function Exec(string $sql_str, array $data): ?int
+    protected function Exec(string $sql_str, array $data): ?int
     {
         try {
             $exec = $this->getDBH()->prepare($sql_str);
             $exec->execute($data);
             return null;
         } catch (PDOException $e) {
+            echo $e->getMessage(); //TODO Потом удалить
             return $e->getCode();
         }
     }
@@ -54,7 +56,7 @@ class Database
      * @return array|bool
      */
 
-    public function Query(string $sql_str, array $data = null): array|bool
+    protected function Query(string $sql_str, array $data = null): array|bool
     {
         try {
             $arr = array();
@@ -69,3 +71,4 @@ class Database
         }
     }
 }
+

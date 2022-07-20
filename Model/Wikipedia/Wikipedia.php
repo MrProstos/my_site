@@ -1,6 +1,8 @@
 <?php
 
-//Класс для поиска статей
+/**
+ * Класс для взаимодействия с API Википедии
+ */
 class Wikipedia
 {
     const endPoint = "https://ru.Wikipedia.org/w/api.php";
@@ -19,11 +21,12 @@ class Wikipedia
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $output = curl_exec($ch);
         curl_close($ch);
+
         return json_decode($output, true);
     }
 
     /**
-     * Поиск статей , возвращает ассоциативный массив
+     * Поиск статей, возвращает ассоциативный массив
      * @param string $Search_word Принимает строку и ищет похожую статью по названию
      * @return mixed
      */
@@ -39,6 +42,7 @@ class Wikipedia
             "redirects" => "resolve",
             "limit" => 1
         ];
+
         return $this->Request($params);
     }
 
@@ -57,6 +61,7 @@ class Wikipedia
             "prop" => "text"
         ];
         $arr = $this->Request($params);
+
         return strip_tags($arr["parse"]["text"]["*"]);
     }
 }

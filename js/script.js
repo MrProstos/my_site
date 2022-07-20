@@ -1,6 +1,6 @@
 "use strict";
 
-const ServerURL = "http://mrprostos.keenetic.link/"
+const ServerURL = "http://localhost:63342/"
 
 // При нажатии кнопки отправляет запрос на сервер
 function Get_Content_1() {
@@ -10,7 +10,7 @@ function Get_Content_1() {
     let title = document.querySelector("#title"); // Берем название статьи введеное пользователем
     let xhr = new XMLHttpRequest();
 
-    const url = ServerURL + "Controllers/1.php";
+    const url = ServerURL + "Controllers/Import.php";
 
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -25,6 +25,7 @@ function Get_Content_1() {
                 let status = msg["status"][i]
                 let title = msg["title"][i]
                 let url = msg["url"][i]
+                let size = msg["size"][i]
                 let count = msg["count"][i]
 
                 switch (status) {
@@ -44,6 +45,7 @@ function Get_Content_1() {
                         <tr>
                             <td>${title}</td>
                             <td>${url}</td>
+                            <td>${size}</td>
                             <td>${count}</td>
                         </tr>`);
                 }
@@ -60,7 +62,7 @@ function Get_Content_2() {
 
     let xhr = new XMLHttpRequest();
 
-    const url = ServerURL + "Controllers/2.php";
+    const url = ServerURL + "Controllers/Show.php";
 
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -136,6 +138,7 @@ function OnLoad() {
 
                 let title = msg["title"][i];
                 let url = msg["url"][i];
+                let size = Math.trunc(msg["size"][i] / 1000);
                 let count = msg["count_words"][i];
 
                 result.insertAdjacentHTML("afterbegin", `
@@ -143,6 +146,7 @@ function OnLoad() {
                         <tr>
                             <td>${title}</td>
                             <td>${url}</td>
+                            <td>${size}Kb</td>
                             <td>${count}</td>
                         </tr>
                     </tbody>`);
