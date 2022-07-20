@@ -76,6 +76,7 @@ function Get_Content_2() {
 
                 let status = msg["status"][i]
                 let title = msg["title"][i];
+                let word = msg["word"][i];
                 let count = msg["count"][i];
 
                 switch (status) {
@@ -84,7 +85,7 @@ function Get_Content_2() {
                         break
                     case "ok":
                         document.querySelector(".result_article_word").insertAdjacentHTML("beforeend",
-                            `<span>Статья <a id="${title}" onclick="OnClickTitle()" href="#">${title}</a>  кол-во совпадений  ${count}</span><br>`);
+                            `<span>Слово ${word} - статья <a id="${title}" onclick="OnClickTitle()" href="#">${title}</a>  кол-во совпадений  ${count}</span><br>`);
                 }
 
             }

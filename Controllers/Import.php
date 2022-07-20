@@ -50,7 +50,8 @@ for ($i = 0; $i < count($response[1]); $i++) {
     }
 
     foreach (explode(" ", $cleanText, $limit = PHP_INT_MAX) as $item) {// Разбиваем текст на слова и проходим циклом
-        $words->Insert([$item]);
+        $low_word =  mb_strtolower($item,"UTF-8");
+        $words->Insert([$low_word]);
     }
 
     $msg["status"][] = "ok";

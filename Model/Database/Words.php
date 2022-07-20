@@ -26,7 +26,7 @@ class Words extends Database
      */
     public function Select(array $data): bool|array
     {
-        return $this->Query("select * from words where word like ?", $data);
+        return $this->Query("select * from words where lower (words.word) like ?", $data);
     }
 
 }
